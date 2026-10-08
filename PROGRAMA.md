@@ -350,7 +350,7 @@ Si algo falla, recorre el stack **en orden** hasta encontrar el eslabón roto:
 
 ## Autoevaluación
 
-Para practicar **haciendo** (evidencia de tu propio servidor): ver `PREGUNTAS.md` — 30 desafíos de investigación, desde `/etc` hasta montar el LAMP tú mismo.
+Para practicar **haciendo** (evidencia de tu propio servidor): ver `docente/PREGUNTAS.md` — 12 desafíos básicos, desde `/etc` hasta tu primer servicio web.
 
 Antes de arrancar el proyecto, puedes responder:
 

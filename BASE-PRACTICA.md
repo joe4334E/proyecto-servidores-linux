@@ -268,7 +268,7 @@ curl http://IP/
 
 ## Cierre — tu incremento está completo
 
-1. **Inventario en el README** — completa la tabla: sistema, IP, hostname, SSH, servicios instalados/activos, puertos, usuarios, firewall.
+1. **Inventario en tu README** — escribe: sistema, IP, hostname, SSH, servicios instalados/activos, puertos, usuarios, firewall.
 
 2. **Commit:**
 
