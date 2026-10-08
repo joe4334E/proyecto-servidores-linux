@@ -1,4 +1,0 @@
-<?php
-// version vieja, NO USAR
-// $pdo = new PDO('mysql:host=localhost;dbname=empresa','root','');
-echo 'pagina en construccion';

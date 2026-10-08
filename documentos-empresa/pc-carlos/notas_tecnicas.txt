@@ -1,3 +1,0 @@
-apache 2.4.x — revisar modulo php
-el dump viejo estaba mal exportado (columnas corridas)
-si la pagina se descarga en vez de verse: falta el modulo de apache

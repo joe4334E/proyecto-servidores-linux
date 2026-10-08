@@ -392,19 +392,19 @@ done
 | 1 — Usuarios y grupos | Clase 1 (roles, usuarios); módulo C (grupos por departamento) |
 | 2 — Permisos | módulo C: política de `/empresa`; criterio `777` = 0 |
 | 3 — Servicios y logs | Clase 1 fases 2/3; diagnóstico en todo el proyecto |
-| 4 — Red y firewall | Clase 1 fase 8; tabla de puertos del README |
+| 4 — Red y firewall | Clase 1 fase 8; puertos 22 y 80 del README |
 | 5 — Apache | módulo A (Virtual Host, logs) |
 | 6 — PHP | módulo A (la aplicación real del docente) |
 | 7 — MariaDB | módulo B (`app_user` / `consulta`, respaldos) |
 | 8 — LAMP completo | la clase 1 **es** este montaje; los módulos lo endurecen |
-| 9 — Buenas prácticas | rúbrica: seguridad, respaldos, documentación |
+| 9 — Buenas prácticas | la entrega: seguridad, respaldos, documentación |
 | 10 — Scripts bash | entrega individual: `organizar.sh` + 1 script a elección; `backup.sh`/`restore.sh` del grupo |
 
 ---
 
 ## Autoevaluación
 
-Para practicar **haciendo** (evidencia de tu propio servidor): ver `docente/PREGUNTAS.md` — 12 desafíos básicos, desde `/etc` hasta tu primer servicio web.
+Para practicar **haciendo** (evidencia de tu propio servidor): ver `PREGUNTAS.md` — 12 desafíos básicos, desde `/etc` hasta tu primer servicio web.
 
 Antes de arrancar el proyecto, puedes responder:
 
