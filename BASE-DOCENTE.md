@@ -19,6 +19,30 @@ Antes de la Fase 1, deje claro el hilo de la clase:
 - Al final de la clase, esa máquina es la base sobre la que cada grupo levantará los tres módulos del proyecto en la Clase 2.
 - Reglas: nadie trabaja como `root` (usa `sudo`); hoy sí hay comandos entregados; siempre se comprueba **desde otra máquina**.
 
+### Dónde está cada cosa (LAMP)
+
+**Contexto de conexión — decirlo al arrancar:** la VM corre en VirtualBox/VMware **en la laptop de cada estudiante**, con red **bridged** (misma red). Todo se hace desde la **terminal de la laptop**, con `ssh usuario@IP_DE_LA_VM`. La consola gráfica de la VM (la pantalla de VirtualBox) es solo para emergencias: si están trabajando ahí, están en el lugar equivocado.
+
+```
+  LAPTOP (fuera)                         VM (servidor)
+┌──────────────┐   ssh / http://IP   ┌─────────────────────────────────┐
+│  terminal    │ ──────────────────► │  SSH :22                        │
+│  navegador   │                     │  Apache :80 ─► PHP ─► MariaDB   │
+│  (el cliente)│ ◄──── HTML ───────  │         (todo el LAMP vive aquí)│
+└──────────────┘                     └─────────────────────────────────┘
+       ↑                                     │
+  "desde otra máquina" = AQUÍ                │ no se toca desde dentro
+```
+
+| Letra | Fases de hoy | Qué es |
+|---|---|---|
+| **L** — Linux | 1, 2, 3, 4, 8 | acceso, servicios, logs, puertos, firewall |
+| **A** — Apache | 5 | el servidor web |
+| **P** — PHP | 6 | la página que se ejecuta en el servidor |
+| **M** — MariaDB | 7 | los datos |
+
+Al final de la clase el stack LAMP está montado y cerrado; la Clase 2 lo endurece con los módulos A/B/C.
+
 ### Tabla de progresión
 
 | Fase | Artefacto que queda | Se usa después en… |
@@ -40,30 +64,33 @@ Antes de la Fase 1, deje claro el hilo de la clase:
 
 > "Su empresa tiene un servidor en un rack, ustedes nunca lo han visto y tienen que empezar a trabajar hoy. ¿Cómo entran?"
 
-**Meta observable:** sesión SSH abierta **desde otra máquina**, con usuario no-root, y los datos de identidad anotados.
+**Meta observable:** sesión SSH abierta **desde la laptop (fuera de la VM)**, con usuario no-root, y los datos de identidad anotados.
 
 **Explicación (breve)**
 
-- Cliente-servidor: ustedes son el cliente; la VM es el servidor.
+- Cliente-servidor: la laptop es el cliente; la VM es el servidor. Entre medio, la red (bridged) les da una IP alcanzable.
 - SSH: sesión remota cifrada; es la puerta de administración del servidor.
 - Por qué no `root`: si te equivocas como root no hay vuelta atrás; además nadie puede decir quién hizo qué. `sudo` ejecuta lo mismo pero **deja registro** y exige intención.
+- **La consola de VirtualBox no cuenta como "trabajo remoto".** Si la usan, no están practicando nada del proyecto.
 
-**Demo**
+**Demo** (desde la terminal de la laptop, NO dentro de la VM)
 
 ```bash
-ssh usuario@IP_DE_LA_VM    # desde otra máquina, no desde la VM
+ssh usuario@IP_DE_LA_VM
 whoami
 hostnamectl
 who
 ```
 
+También desde la laptop: `curl http://IP_DE_LA_VM/` — la comprobación de "otra máquina" de todo el curso es **esta laptop**.
+
 **Práctica:** bloque 1 de `BASE-PRACTICA.md`.
 
 **Hito**
 
-- [ ] Entré por SSH desde una máquina distinta a la VM
+- [ ] Entré por SSH desde la laptop, con la consola de la VM cerrada
 - [ ] `whoami` muestra mi usuario, no root
-- [ ] IP y hostname anotados
+- [ ] IP de la VM y hostname anotados en la hoja
 
 **Conexión con el proyecto:** este es el mismo acceso que usarán las 3 clases; en la Clase 3 entregarán IP + usuario + contraseña al docente exactamente así.
 
@@ -413,7 +440,7 @@ git commit -m "incremento 1 - base comun"
 
 | Fase | Lo que pasa | Qué decir (no dar el comando) |
 |---|---|---|
-| 1 | trabajan dentro de la VM como si fuera el cliente | *"¿desde qué máquina están? ¿La prueba es válida?"* |
+| 1 | trabajan en la consola gráfica de la VM en vez de SSH desde la laptop | *"¿desde qué máquina estás? ¿La consola de VirtualBox es tu práctica?"* |
 | 2 | confunden `start` con `enable` | *"¿y si lo reinicio?"* |
 | 3 | dicen "el servicio falló" sin mirar nada | *"¿qué dice exactamente el log?"* |
 | 5 | `apt: command not found` | en Mint usan `sudo apt ...` |

@@ -1,0 +1,21 @@
+ID,Cliente,Ciudad,Contacto,Teléfono,Saldo
+C-001,Distribuidora Andina,Rosario,admin,+54 351 4615305,0
+C-002,Supermercados El Sol,Córdoba,admin,+54 351 4319023,0
+C-003,Ferretería Central,Córdoba,gerencia,+54 351 4554895,0
+C-004,Panadería La Espiga,Rosario,gerencia,+54 351 4936169,0
+C-005,Industrias Metalúrgicas Sur,Santiago,admin,+54 351 4801438,0
+C-006,Clínica San Martín,San Juan,compras,+54 351 4297980,0
+C-007,Colegio Técnico N°7,Rosario,compras,+54 351 4864925,0
+C-008,Óptica Visión,Santiago,gerencia,+54 351 4450095,0
+C-009,Librería Universitaria,Santiago,compras,+54 351 4954086,0
+C-010,Farmacia del Pueblo,Santiago,gerencia,+54 351 4875495,0
+C-011,Restaurante Sabores,Córdoba,gerencia,+54 351 4612432,0
+C-012,Hotel Cumbre,Rosario,compras,+54 351 4032674,0
+C-013,Transportes Rápidos SA,Mendoza,compras,+54 351 4394912,0
+C-014,Constructora Norte,Santiago,compras,+54 351 4658261,0
+C-015,Agropecuaria La Pampa,Santiago,gerencia,+54 351 4256439,0
+C-016,Laboratorio Químico,Córdoba,admin,+54 351 4836446,0
+C-017,Estudio Contable López,Santiago,gerencia,+54 351 4096408,0
+C-018,Remisería 24hs,Córdoba,gerencia,+54 351 4772578,0
+C-019,Gimnasio PowerFit,Córdoba,admin,+54 351 4246190,0
+C-020,Floristería Aroma,Rosario,compras,+54 351 4775766,0

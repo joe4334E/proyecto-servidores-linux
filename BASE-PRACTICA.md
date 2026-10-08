@@ -16,19 +16,31 @@ Al final de esta clase tu servidor será algo real: una **página publicada que 
 | 8 — Cerrar y sobrevivir | UFW activo + reinicio superado |
 
 **Regla:** nadie trabaja como `root`. Usa tu usuario con `sudo`.
-**Regla:** toda comprobación se hace **desde otra máquina**.
+**Regla:** toda comprobación se hace **desde tu laptop, fuera de la VM** (SSH abierto desde la terminal de la laptop, navegador y `curl` desde ahí). La consola gráfica de VirtualBox es solo para emergencias.
+
+La VM corre en VirtualBox/VMware **en tu laptop**; ahí vive todo el **LAMP**:
+
+```
+  TU LAPTOP                     TU VM (servidor)
+┌──────────────┐  ssh/http:IP  ┌───────────────────────────────┐
+│ terminal     │ ────────────► │ SSH:22 · Apache:80 ─► PHP     │
+│ navegador    │ ◄─── HTML ──  │        ─► MariaDB (LAMP)      │
+└──────────────┘               └───────────────────────────────┘
+```
 
 | Dato | Valor |
 |---|---|
 | IP de mi servidor | |
 | Usuario | |
-| Máquina desde la que me conecto | |
+| Máquina desde la que me conecto | mi laptop |
 
 ---
 
 ## Fase 1 — Llegar al servidor
 
-**Vas a construir:** una sesión de trabajo real, desde otra máquina, con tu propio usuario.
+**Vas a construir:** una sesión de trabajo real desde tu laptop, con tu propio usuario — sin usar la consola de la VM.
+
+Primero: anota la IP de tu VM (dentro de la VM: `ip a` → la dirección de la interfaz). Desde la **terminal de la laptop**:
 
 ```bash
 ssh usuario@IP
@@ -38,9 +50,10 @@ hostnamectl
 
 **Comprueba que:**
 
-- [ ] Entré por SSH desde una máquina distinta del servidor
+- [ ] Entré por SSH desde la laptop, con la consola de la VM cerrada
 - [ ] `whoami` muestra mi usuario (no root)
 - [ ] Anoté IP y hostname en la tabla de arriba
+- [ ] Desde la laptop, `curl http://IP/` responde (o falla por servicio — aún no lo instalamos)
 
 ---
 

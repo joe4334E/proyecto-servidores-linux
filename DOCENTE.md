@@ -8,16 +8,15 @@
 
 # Parte I — Operación
 
-
 ---
 
 ## 1. Preparación previa (antes de la clase 1)
 
-Cada grupo recibe **una VM Linux limpia**. Limpia significa:
+Cada grupo recibe **una VM Linux limpia**, que corre en **VirtualBox/VMware en la laptop de los estudiantes** (red **bridged**: misma red, la VM queda alcanzable desde la laptop). Limpia significa:
 
 - sistema actualizado;
 - **SSH del servidor instalado y funcionando** (es acceso al laboratorio, no es el contenido del proyecto);
-- IP fija en la red del aula y hostname propio (ej. `srv-g1` … `srv-g5`);
+- red **bridged** y hostname propio (ej. `srv-g1` … `srv-g5`); si la red del aula da DHCP, los estudiantes anotan la IP que les toque en la Fase 1 (`ip a`); si puedes reservar IPs fijas, mejor;
 - un usuario administrador creado por usted (credenciales que entregarán al grupo);
 - **ningún servicio preinstalado** (Apache y MariaDB se instalan en la clase 1; Samba y el resto, en clase 2: todo eso lo hacen ellos);
 - snapshot de imagen base con la VM en ese estado.
@@ -46,15 +45,15 @@ sudo usermod -aG sudo adminN
 
 ## 2. Acceso de los estudiantes
 
-### Opción principal — red del aula
-
-Las VMs con IP fija; los estudiantes entran desde las máquinas del salón:
+Los estudiantes trabajan **desde la terminal de su laptop** hacia la VM (la consola gráfica de la VM es solo para emergencias):
 
 ```bash
-ssh adminN@192.168.X.Y10
+ssh adminN@IP_DE_LA_VM     # desde la laptop
 ```
 
 Entregales: IP, usuario, contraseña. Nada más.
+
+> **Verificación:** en la clase 1 los estudiantes deben probar todo con la consola de la VM **cerrada**. "Desde otra máquina" en todo el proyecto = su laptop.
 
 ### Respaldo opcional — Tailscale
 
@@ -89,10 +88,12 @@ Si tras esas 5 siguen bloqueados, señala el **área** (red, servicio, permiso, 
 
 ## 4. Antes de cada clase
 
+> **Banco de preguntas:** `PREGUNTAS.md` — desafíos de investigación (bloques 1–5 acompañan la Clase 1; el bloque 6 es el puente LAMP al proyecto). Se usan como misión extra o para el que avanza: sin comandos entregados, con evidencia de SU servidor.
+
 | Clase | Preparación suya |
 |---|---|
 | 1 (base común) | VMs encendidas, IP/credenciales listas para entregar, snapshot base verificado, `BASE-DOCENTE.md` a la mano; probar antes en una VM que `sudo apt update` llega a los repositorios |
-| 2 | VMs encendidas; revisar en 2 minutos que la clase 1 quedó cerrada (los hitos atrasados se arreglan en clase 2, no en casa sin control) |
+| 2 | VMs encendidas; revisar en 2 minutos que la clase 1 quedó cerrada (los hitos atrasados se arreglan en clase 2, no en casa sin control); **entregar `documentos-empresa/`** (el desorden de las 4 PCs, el mismo para los 5 grupos) para el módulo de archivos |
 | 3 | VMs encendidas; preparar tu plan de pruebas para los 5 servidores (ver sección 5); lugar para anotar resultados |
 | Sesión 4 | snapshot de los 5 servidores + fallos inyectados del catálogo + sobres con credenciales |
 

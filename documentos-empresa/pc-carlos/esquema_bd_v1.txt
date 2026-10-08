@@ -1,0 +1,4 @@
+clientes(id, nombre, ciudad)
+productos(id, descripcion, precio)
+pedidos(id, cliente_id, fecha, total)
+-- v2: se agrego tabla detalle_pedido
