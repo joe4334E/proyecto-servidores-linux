@@ -174,7 +174,6 @@ SERVICIO → ESTADO → LOG → ERROR → CAUSA → SOLUCIÓN → VERIFICACIÓN
 | 80 | HTTP (Apache) |
 | 443 | HTTPS |
 | 3306 | MariaDB (**no se abre al exterior**: la app habla en local) |
-| 139/445 | Samba (archivos compartidos) |
 
 ```bash
 ss -tulpn              # qué proceso escucha en qué puerto
@@ -332,7 +331,61 @@ Si algo falla, recorre el stack **en orden** hasta encontrar el eslabón roto:
 
 ---
 
-## 10. Mapa al proyecto
+## 10. Scripts bash: tus primeras herramientas
+
+Un script es un archivo de texto con comandos que se ejecutan en orden: lo que harías escribiendo en la terminal, guardado y repetible.
+
+```bash
+#!/bin/bash                  # quién lo interpreta (siempre la primera línea)
+set -e                        # detenerse ante el primer error (buena práctica)
+
+echo "Hola, $USER"            # salida en pantalla
+FECHA=$(date +%F)             # guardamos un valor en una variable
+cp archivo.sql "archivo-$FECHA.sql"
+
+if [ -f /etc/passwd ]; then   # condición: ¿existe el archivo?
+    echo "existe"
+fi
+
+for f in *.txt; do            # recorre cada archivo .txt
+    echo "procesando $f"
+done
+```
+
+### Crear y ejecutar
+
+```bash
+nano organizar.sh             # o el editor que prefieras
+chmod +x organizar.sh         # permiso de ejecución (si falta: "Permission denied")
+./organizar.sh                # ejecutar desde la carpeta
+bash organizar.sh             # alternativa sin chmod +x
+```
+
+### Ejercicio del proyecto: `organizar.sh`
+
+Clasifica los documentos desordenados de la empresa por extensión (cada estudiante el suyo):
+
+```bash
+#!/bin/bash
+# TODO: tuyo — clasifica los documentos en carpetas por extensión
+for ext in docx xlsx pdf txt; do
+    mkdir -p "$DESTINO/$ext"
+    # ¿cómo encuentras todos los archivos .$ext y los copias? investiga `find` y `cp`
+done
+```
+
+| Concepto | Para qué |
+|---|---|
+| `$1`, `$2` … | argumentos: `./organizar.sh entrada salida` |
+| `>` y `>>` | redirigir salida a archivo (`>` sobrescribe, `>>` agrega) |
+| `read VAR` | pedir datos al usuario |
+| `find`, `grep`, `wc` | las herramientas que todo script combina |
+
+**Regla:** un script que no puedes explicar **línea por línea** no es tuyo — en la defensa se pregunta.
+
+---
+
+## 11. Mapa al proyecto
 
 | Sección del programa | Dónde se vive en el proyecto |
 |---|---|
@@ -345,6 +398,7 @@ Si algo falla, recorre el stack **en orden** hasta encontrar el eslabón roto:
 | 7 — MariaDB | módulo B (`app_user` / `consulta`, respaldos) |
 | 8 — LAMP completo | la clase 1 **es** este montaje; los módulos lo endurecen |
 | 9 — Buenas prácticas | rúbrica: seguridad, respaldos, documentación |
+| 10 — Scripts bash | entrega individual: `organizar.sh` + 1 script a elección; `backup.sh`/`restore.sh` del grupo |
 
 ---
 
@@ -361,3 +415,4 @@ Antes de arrancar el proyecto, puedes responder:
 5. ¿Qué dos condiciones deben cumplirse a la vez para que un puerto sea accesible desde fuera?
 6. ¿Qué significa que `consulta` tenga solo `SELECT` y cómo demuestras que `UPDATE` le falla?
 7. Menciona 3 diferencias entre respaldar y restaurar, y por qué solo la segunda prueba que sirve el respaldo.
+8. ¿Qué hace `chmod +x script.sh` y qué mensaje ves si lo ejecutas sin ese permiso?
